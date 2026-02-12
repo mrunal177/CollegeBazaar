@@ -1,0 +1,27 @@
+# CampusBazaar - Python Dependencies
+# Install with: pip install -r requirements.txt
+
+# ─── Algorand SDK ─────────────────────────────────────────────────────────────
+py-algorand-sdk>=2.5.0       # Core Algorand SDK (algosdk)
+pyteal>=0.25.0               # Write smart contracts in Python
+
+# ─── Web Framework ────────────────────────────────────────────────────────────
+fastapi>=0.110.0
+uvicorn[standard]>=0.28.0    # ASGI server
+python-multipart>=0.0.9      # File uploads
+
+# ─── Auth & Security ──────────────────────────────────────────────────────────
+python-jose[cryptography]>=3.3.0   # JWT tokens
+passlib[bcrypt]>=1.7.4             # Password hashing
+
+# ─── Data Validation ──────────────────────────────────────────────────────────
+pydantic[email]>=2.6.0       # email-validator included
+
+# ─── File Handling ────────────────────────────────────────────────────────────
+aiofiles>=23.2.1             # Async file I/O for image uploads
+
+# ─── Dev & Testing ────────────────────────────────────────────────────────────
+httpx>=0.27.0                # Async HTTP client (for testing)
+pytest>=8.1.0
+pytest-asyncio>=0.23.0
+python-dotenv>=1.0.0         # Load .env files

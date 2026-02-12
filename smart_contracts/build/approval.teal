@@ -1,0 +1,343 @@
+#pragma version 8
+txn ApplicationID
+int 0
+==
+bnz main_l19
+txn OnCompletion
+int DeleteApplication
+==
+bnz main_l18
+txna ApplicationArgs 0
+byte "fund_escrow"
+==
+bnz main_l17
+txna ApplicationArgs 0
+byte "confirm"
+==
+bnz main_l16
+txna ApplicationArgs 0
+byte "refund"
+==
+bnz main_l15
+txna ApplicationArgs 0
+byte "dispute"
+==
+bnz main_l14
+txna ApplicationArgs 0
+byte "resolve"
+==
+bnz main_l8
+err
+main_l8:
+byte "status"
+app_global_get
+byte "disputed"
+==
+assert
+txn Sender
+byte "seller"
+app_global_get
+==
+assert
+txn NumAppArgs
+int 2
+==
+assert
+txna ApplicationArgs 1
+byte "buyer"
+==
+bnz main_l13
+txna ApplicationArgs 1
+byte "seller"
+==
+bnz main_l11
+err
+main_l11:
+byte "status"
+byte "confirmed"
+app_global_put
+itxn_begin
+int pay
+itxn_field TypeEnum
+byte "platform_fee_addr"
+app_global_get
+itxn_field Receiver
+byte "item_price"
+app_global_get
+int 100
+*
+int 10000
+/
+itxn_field Amount
+int 0
+itxn_field Fee
+itxn_submit
+itxn_begin
+int pay
+itxn_field TypeEnum
+byte "seller"
+app_global_get
+itxn_field Receiver
+byte "item_price"
+app_global_get
+byte "item_price"
+app_global_get
+int 100
+*
+int 10000
+/
+-
+itxn_field Amount
+int 0
+itxn_field Fee
+itxn_submit
+main_l12:
+int 1
+return
+main_l13:
+byte "status"
+byte "refunded"
+app_global_put
+itxn_begin
+int pay
+itxn_field TypeEnum
+byte "buyer"
+app_global_get
+itxn_field Receiver
+byte "item_price"
+app_global_get
+itxn_field Amount
+int 0
+itxn_field Fee
+itxn_submit
+b main_l12
+main_l14:
+byte "status"
+app_global_get
+byte "funded"
+==
+assert
+txn Sender
+byte "buyer"
+app_global_get
+==
+assert
+txn NumAppArgs
+int 2
+==
+assert
+global Round
+byte "funded_at"
+app_global_get
+int 500
++
+<=
+assert
+byte "status"
+byte "disputed"
+app_global_put
+byte "dispute_reason"
+txna ApplicationArgs 1
+app_global_put
+int 1
+return
+main_l15:
+byte "status"
+app_global_get
+byte "funded"
+==
+assert
+txn Sender
+byte "buyer"
+app_global_get
+==
+assert
+global Round
+byte "funded_at"
+app_global_get
+int 1000
++
+>=
+assert
+byte "status"
+byte "refunded"
+app_global_put
+itxn_begin
+int pay
+itxn_field TypeEnum
+byte "buyer"
+app_global_get
+itxn_field Receiver
+byte "item_price"
+app_global_get
+itxn_field Amount
+int 0
+itxn_field Fee
+itxn_submit
+int 1
+return
+main_l16:
+byte "status"
+app_global_get
+byte "funded"
+==
+assert
+txn Sender
+byte "buyer"
+app_global_get
+==
+assert
+byte "status"
+byte "confirmed"
+app_global_put
+itxn_begin
+int pay
+itxn_field TypeEnum
+byte "platform_fee_addr"
+app_global_get
+itxn_field Receiver
+byte "item_price"
+app_global_get
+int 100
+*
+int 10000
+/
+itxn_field Amount
+int 0
+itxn_field Fee
+itxn_submit
+itxn_begin
+int pay
+itxn_field TypeEnum
+byte "seller"
+app_global_get
+itxn_field Receiver
+byte "item_price"
+app_global_get
+byte "item_price"
+app_global_get
+int 100
+*
+int 10000
+/
+-
+itxn_field Amount
+int 0
+itxn_field Fee
+itxn_submit
+int 1
+return
+main_l17:
+byte "status"
+app_global_get
+byte "open"
+==
+assert
+txn Sender
+byte "seller"
+app_global_get
+==
+!
+assert
+global GroupSize
+int 2
+==
+assert
+gtxn 1 TypeEnum
+int pay
+==
+assert
+gtxn 1 Sender
+txn Sender
+==
+assert
+gtxn 1 Receiver
+global CurrentApplicationAddress
+==
+assert
+gtxn 1 Amount
+byte "item_price"
+app_global_get
+==
+assert
+gtxn 1 CloseRemainderTo
+global ZeroAddress
+==
+assert
+byte "buyer"
+txn Sender
+app_global_put
+byte "status"
+byte "funded"
+app_global_put
+byte "funded_at"
+global Round
+app_global_put
+int 1
+return
+main_l18:
+byte "status"
+app_global_get
+byte "open"
+==
+assert
+txn Sender
+byte "seller"
+app_global_get
+==
+assert
+int 1
+return
+main_l19:
+txn NumAppArgs
+int 6
+==
+assert
+txna ApplicationArgs 1
+btoi
+int 1000000
+>=
+assert
+txna ApplicationArgs 0
+len
+int 64
+<=
+assert
+byte "seller"
+txn Sender
+app_global_put
+byte "item_title"
+txna ApplicationArgs 0
+app_global_put
+byte "item_price"
+txna ApplicationArgs 1
+btoi
+app_global_put
+byte "item_category"
+txna ApplicationArgs 2
+app_global_put
+byte "item_co2_saved"
+txna ApplicationArgs 3
+btoi
+app_global_put
+byte "eco_points_value"
+txna ApplicationArgs 4
+btoi
+app_global_put
+byte "platform_fee_addr"
+txna ApplicationArgs 5
+app_global_put
+byte "status"
+byte "open"
+app_global_put
+byte "buyer"
+byte ""
+app_global_put
+byte "dispute_reason"
+byte ""
+app_global_put
+byte "funded_at"
+int 0
+app_global_put
+int 1
+return

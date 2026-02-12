@@ -1,0 +1,21 @@
+#pragma version 8
+byte "status"
+app_global_get
+byte "funded"
+==
+bz main_l2
+itxn_begin
+int pay
+itxn_field TypeEnum
+byte "buyer"
+app_global_get
+itxn_field Receiver
+byte "item_price"
+app_global_get
+itxn_field Amount
+int 0
+itxn_field Fee
+itxn_submit
+main_l2:
+int 1
+return

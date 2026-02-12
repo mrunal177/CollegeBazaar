@@ -1,0 +1,307 @@
+#pragma version 8
+txn ApplicationID
+int 0
+==
+bnz main_l17
+txn OnCompletion
+int OptIn
+==
+bnz main_l16
+txna ApplicationArgs 0
+byte "record_trade"
+==
+bnz main_l9
+txna ApplicationArgs 0
+byte "verify"
+==
+bnz main_l5
+err
+main_l5:
+txn Sender
+byte "admin"
+app_global_get
+==
+assert
+txn NumAppArgs
+int 2
+==
+assert
+txna ApplicationArgs 1
+byte "college_verified"
+app_local_get
+int 0
+==
+assert
+txna ApplicationArgs 1
+byte "college_verified"
+int 1
+app_local_put
+txna ApplicationArgs 1
+byte "eco_points"
+txna ApplicationArgs 1
+byte "eco_points"
+app_local_get
+int 100
++
+app_local_put
+txna ApplicationArgs 1
+byte "reputation_score"
+txna ApplicationArgs 1
+byte "trades_completed"
+app_local_get
+int 5
+*
+txna ApplicationArgs 1
+byte "eco_points"
+app_local_get
+int 10
+/
++
+int 100
+>
+bnz main_l8
+txna ApplicationArgs 1
+byte "trades_completed"
+app_local_get
+int 5
+*
+txna ApplicationArgs 1
+byte "eco_points"
+app_local_get
+int 10
+/
++
+main_l7:
+app_local_put
+int 1
+return
+main_l8:
+int 100
+b main_l7
+main_l9:
+txn Sender
+byte "admin"
+app_global_get
+==
+assert
+txn NumAppArgs
+int 5
+==
+assert
+txna ApplicationArgs 1
+byte "eco_points"
+txna ApplicationArgs 1
+byte "eco_points"
+app_local_get
+txna ApplicationArgs 4
+btoi
++
+int 20
++
+app_local_put
+txna ApplicationArgs 1
+byte "trades_completed"
+txna ApplicationArgs 1
+byte "trades_completed"
+app_local_get
+int 1
++
+app_local_put
+txna ApplicationArgs 1
+byte "trades_as_seller"
+txna ApplicationArgs 1
+byte "trades_as_seller"
+app_local_get
+int 1
++
+app_local_put
+txna ApplicationArgs 1
+byte "co2_saved_grams"
+txna ApplicationArgs 1
+byte "co2_saved_grams"
+app_local_get
+txna ApplicationArgs 3
+btoi
++
+app_local_put
+txna ApplicationArgs 1
+byte "last_trade_round"
+global Round
+app_local_put
+txna ApplicationArgs 1
+byte "reputation_score"
+txna ApplicationArgs 1
+byte "trades_completed"
+app_local_get
+int 5
+*
+txna ApplicationArgs 1
+byte "eco_points"
+app_local_get
+int 10
+/
++
+int 100
+>
+bnz main_l15
+txna ApplicationArgs 1
+byte "trades_completed"
+app_local_get
+int 5
+*
+txna ApplicationArgs 1
+byte "eco_points"
+app_local_get
+int 10
+/
++
+main_l11:
+app_local_put
+txna ApplicationArgs 2
+byte "eco_points"
+txna ApplicationArgs 2
+byte "eco_points"
+app_local_get
+txna ApplicationArgs 4
+btoi
++
+app_local_put
+txna ApplicationArgs 2
+byte "trades_completed"
+txna ApplicationArgs 2
+byte "trades_completed"
+app_local_get
+int 1
++
+app_local_put
+txna ApplicationArgs 2
+byte "trades_as_buyer"
+txna ApplicationArgs 2
+byte "trades_as_buyer"
+app_local_get
+int 1
++
+app_local_put
+txna ApplicationArgs 2
+byte "co2_saved_grams"
+txna ApplicationArgs 2
+byte "co2_saved_grams"
+app_local_get
+txna ApplicationArgs 3
+btoi
++
+app_local_put
+txna ApplicationArgs 2
+byte "last_trade_round"
+global Round
+app_local_put
+txna ApplicationArgs 2
+byte "reputation_score"
+txna ApplicationArgs 2
+byte "trades_completed"
+app_local_get
+int 5
+*
+txna ApplicationArgs 2
+byte "eco_points"
+app_local_get
+int 10
+/
++
+int 100
+>
+bnz main_l14
+txna ApplicationArgs 2
+byte "trades_completed"
+app_local_get
+int 5
+*
+txna ApplicationArgs 2
+byte "eco_points"
+app_local_get
+int 10
+/
++
+main_l13:
+app_local_put
+byte "total_co2_saved"
+byte "total_co2_saved"
+app_global_get
+txna ApplicationArgs 3
+btoi
++
+app_global_put
+byte "total_trades"
+byte "total_trades"
+app_global_get
+int 1
++
+app_global_put
+int 1
+return
+main_l14:
+int 100
+b main_l13
+main_l15:
+int 100
+b main_l11
+main_l16:
+txn Sender
+byte "eco_points"
+int 0
+app_local_put
+txn Sender
+byte "trades_completed"
+int 0
+app_local_put
+txn Sender
+byte "trades_as_seller"
+int 0
+app_local_put
+txn Sender
+byte "trades_as_buyer"
+int 0
+app_local_put
+txn Sender
+byte "co2_saved_grams"
+int 0
+app_local_put
+txn Sender
+byte "reputation_score"
+int 0
+app_local_put
+txn Sender
+byte "last_trade_round"
+int 0
+app_local_put
+txn Sender
+byte "college_verified"
+int 0
+app_local_put
+byte "total_users"
+byte "total_users"
+app_global_get
+int 1
++
+app_global_put
+int 1
+return
+main_l17:
+txn NumAppArgs
+int 1
+==
+assert
+byte "admin"
+txna ApplicationArgs 0
+app_global_put
+byte "total_co2_saved"
+int 0
+app_global_put
+byte "total_trades"
+int 0
+app_global_put
+byte "total_users"
+int 0
+app_global_put
+int 1
+return

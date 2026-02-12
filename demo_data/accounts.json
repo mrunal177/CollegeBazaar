@@ -1,0 +1,17 @@
+{
+  "admin": {
+    "private_key": "G8k/mJSpGxtis7d1/dciMFEL1kn5mPN3A/PXL99EZ2rIZwd0uHLqUnb1woK9DY23CSN44RU6coaXfhuWjIwQng==",
+    "address": "ZBTQO5FYOLVFE5XVYKBL2DMNW4ESG6HBCU5HFBUXPYNZNDEMCCPFSZWMII",
+    "mnemonic": "casino you equal off dance man only response push garment badge basic birth intact ski ocean wrist assist wet word salad spell farm about angle"
+  },
+  "seller": {
+    "private_key": "vkyJnpl3KLuVdclhjaCWDvQwo5KyAaiIh3ORjLanV0jfEzaUFI0fh+2y3I1DZfHt8inIH+3JxmTYFs82RjVaGg==",
+    "address": "34JTNFAURUPYP3NS3SGUGZPR5XZCTSA75XE4MZGYC3HTMRRVLINLMJCKIA",
+    "mnemonic": "oak cement soon kangaroo extend human protect siren promote lion ensure domain giggle potato nest accuse bench bullet right simple home try dress able meat"
+  },
+  "buyer": {
+    "private_key": "sNlyT8iiFBe3gwQGH0CbZrHnGZ9LMn9JxVaNzDZ9oAR8U51cIBXHKomT2dDZhZXrT3irSYkkFrhefnPM3W55aQ==",
+    "address": "PRJZ2XBACXDSVCMT3HINTBMV5NHXRK2JRESBNOC6PZZ4ZXLOPFUTWKYPRI",
+    "mnemonic": "current slice chicken clutch citizen shift buffalo afraid this about ethics biology sorry shoe friend crane copper benefit problem silver horn butter celery abandon imitate"
+  }
+}
