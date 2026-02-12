@@ -1,16 +1,132 @@
-# React + Vite
+# 🎓 CampusBazaar  
+### A Secure & Sustainable Student Marketplace Powered by Algorand
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+CampusBazaar is a blockchain-based platform that enables safe, verified, and eco-friendly buying and selling among college students using escrow and reputation systems.
 
-Currently, two official plugins are available:
+## 📌 Problem
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Most student trading happens on WhatsApp and Facebook groups, which leads to:
 
-## React Compiler
+- ❌ Payment fraud after shipping items
+- ❌ Fake student identities
+- ❌ No transaction accountability
+- ❌ Repeated scams
+- ❌ Unnecessary purchase of new items → environmental waste
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+There is no trusted platform built specifically for campus trade.
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 💡 Solution
+
+CampusBazaar solves these problems by providing:
+
+- ✅ Verified student onboarding
+- ✅ Algorand-based escrow payments
+- ✅ Transparent reputation system
+- ✅ Secure in-app marketplace
+
+This creates trust and promotes reuse among students.
+
+## ✨ Features Implemented
+
+- ✅ Student verification system  
+- ✅ Item listing and browsing  
+- ✅ Algorand escrow smart contracts  
+- ✅ Secure payment flow  
+- ✅ User reputation tracking  
+- ✅ Responsive web interface  
+
+
+## ⏳ Features Planned
+
+- ⏳ In-app messaging  
+- ⏳ Dispute resolution system  
+- ⏳ Multi-campus support  
+- ⏳ Admin verification dashboard  
+- ⏳ Mobile application  
+
+
+## 🏗 System Architecture
+
+```plaintext
+Frontend (React)
+      ↓
+Backend (Node.js + Express)
+      ↓
+Database (MongoDB)
+      ↓
+Algorand Blockchain
+(Escrow + Reputation)
+```
+
+---
+
+## 📁 Important Files for Review
+
+Judges are encouraged to review the following:
+
+- `smartcontracts/escrow.py` → Escrow logic  
+- `smartcontracts/reputation.py` → Trust system  
+- `backend/routes/payments.js` → Transaction APIs  
+- `frontend/src/components/Checkout.jsx` → Purchase flow  
+
+---
+
+## ⚡ Why Algorand?
+
+We chose Algorand because it offers:
+
+- ⚡ Fast transaction finality (~2.8 seconds)
+- 💰 Ultra-low transaction fees (~₹0.01)
+- 🌱 Carbon-negative blockchain
+- 🐍 Python-friendly smart contracts
+
+This makes it ideal for student micro-transactions.
+
+---
+
+## 🌍 Impact
+
+### Student Impact
+- Reduced fraud
+- Increased trust
+- Lower expenses
+
+### Environmental Impact
+- Encourages reuse
+- Reduces carbon emissions
+- Promotes sustainability
+
+---
+
+## 🛠 How to Run Locally
+
+### Prerequisites
+- Node.js
+- MongoDB
+- Algorand SDK
+
+### Installation
+
+```bash
+git clone https://github.com/mrunal177/CollegeBazaar.git
+cd CollegeBazaar
+
+# Backend
+cd backend
+npm install
+npm start
+
+# Frontend
+cd frontend
+npm install
+npm start
+```
+
+Configure `.env` file for Algorand wallet keys
+
+## 🏁 Final Note
+
+CampusBazaar demonstrates how blockchain can solve real-world problems by creating trust, transparency, and sustainability in student commerce.
+
+Thank you for reviewing our project.
