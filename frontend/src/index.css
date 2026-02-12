@@ -1,0 +1,139 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    background-color: #050A14;
+    color: #E8F0FF;
+    overflow-x: hidden;
+    cursor: default;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: #080F1C; }
+  ::-webkit-scrollbar-thumb { background: #172440; border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: #00D4FF; }
+
+  /* Selection */
+  ::selection { background: rgba(0,212,255,0.3); color: #E8F0FF; }
+
+  h1, h2, h3, h4 { font-family: 'Syne', sans-serif; }
+}
+
+@layer components {
+  /* Glass card base */
+  .glass {
+    background: rgba(8, 15, 28, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .glass-bright {
+    background: rgba(11, 21, 40, 0.85);
+    backdrop-filter: blur(24px);
+    border: 1px solid rgba(0,212,255,0.12);
+  }
+
+  /* Glow borders */
+  .border-glow-cyan  { border-color: rgba(0,212,255,0.35); box-shadow: 0 0 20px rgba(0,212,255,0.15); }
+  .border-glow-acid  { border-color: rgba(57,255,20,0.35);  box-shadow: 0 0 20px rgba(57,255,20,0.12); }
+  .border-glow-gold  { border-color: rgba(255,209,102,0.35); box-shadow: 0 0 20px rgba(255,209,102,0.12); }
+
+  /* Buttons */
+  .btn-cyan {
+    @apply bg-cyan text-obsidian font-display font-bold px-6 py-3 rounded-xl
+           transition-all duration-200 hover:shadow-glow-cyan hover:-translate-y-0.5
+           active:translate-y-0 active:shadow-none;
+  }
+
+  .btn-outline {
+    @apply border border-white/10 text-ink-1 font-body font-medium px-6 py-3 rounded-xl
+           transition-all duration-200 hover:border-cyan/40 hover:text-cyan hover:bg-cyan/5
+           active:scale-95;
+  }
+
+  .btn-acid {
+    @apply bg-acid text-obsidian font-display font-bold px-6 py-3 rounded-xl
+           transition-all duration-200 hover:shadow-glow-acid hover:-translate-y-0.5;
+  }
+
+  /* Tag/badge */
+  .tag-cyan  { @apply bg-cyan/10 text-cyan  border border-cyan/25 rounded-full px-3 py-1 text-xs font-mono; }
+  .tag-acid  { @apply bg-acid/10 text-acid  border border-acid/25 rounded-full px-3 py-1 text-xs font-mono; }
+  .tag-gold  { @apply bg-gold/10 text-gold  border border-gold/25 rounded-full px-3 py-1 text-xs font-mono; }
+  .tag-rose  { @apply bg-rose/10 text-rose  border border-rose/25 rounded-full px-3 py-1 text-xs font-mono; }
+
+  /* Input */
+  .input-dark {
+    @apply w-full bg-obsidian-3 border border-white/8 rounded-xl px-4 py-3
+           text-ink-1 font-body placeholder-ink-3 outline-none
+           transition-all duration-200
+           focus:border-cyan/50 focus:shadow-[0_0_0_3px_rgba(0,212,255,0.1)];
+  }
+
+  /* Section heading */
+  .section-label {
+    @apply font-mono text-xs text-ink-3 uppercase tracking-[0.2em] mb-2;
+  }
+}
+
+@layer utilities {
+  /* Noise texture overlay */
+  .noise::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 999;
+  }
+
+  /* Scanline shimmer effect */
+  .scanline {
+    background: linear-gradient(transparent 0%, rgba(0,212,255,0.03) 50%, transparent 100%);
+    background-size: 100% 8px;
+    animation: scan 4s linear infinite;
+  }
+
+  /* Text gradient */
+  .text-gradient-cyan {
+    background: linear-gradient(135deg, #00D4FF, #39FF14);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .text-gradient-gold {
+    background: linear-gradient(135deg, #FFD166, #FF6B9D);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Grid background */
+  .bg-grid {
+    background-image:
+      linear-gradient(rgba(0,212,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,212,255,0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  /* Shimmer loading skeleton */
+  .shimmer-bg {
+    background: linear-gradient(90deg,
+      rgba(255,255,255,0.04) 25%,
+      rgba(255,255,255,0.08) 50%,
+      rgba(255,255,255,0.04) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+}
